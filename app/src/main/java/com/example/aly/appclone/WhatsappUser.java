@@ -40,7 +40,7 @@ public class WhatsappUser extends AppCompatActivity
 
         listView = findViewById(R.id.listView);
         waUsers = new ArrayList<>();
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tUsers);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, waUsers);
         listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
         try
