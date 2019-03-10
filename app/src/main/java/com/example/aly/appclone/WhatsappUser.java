@@ -22,7 +22,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WhatsappUser extends AppCompatActivity
+public class WhatsappUser extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
     private ListView listView;
     private ArrayList<String> waUsers;
@@ -39,9 +39,9 @@ public class WhatsappUser extends AppCompatActivity
                 FancyToast.INFO, true).show();
 
         listView = findViewById(R.id.listView);
+        listView.setOnItemClickListener(this);
         waUsers = new ArrayList<>();
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, waUsers);
-        listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 
         try
         {
@@ -105,15 +105,17 @@ public class WhatsappUser extends AppCompatActivity
                 });
 
                 break;
-
-/*            case R.id.sendTweetItem:
-
-                Intent intent = new Intent(TwitterUsers.this, SendTweetActivity.class);
-                startActivity(intent);
-
-                break;*/
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        Intent intent = new Intent(WhatsappUser.this, WhatsAppChat.class);
+        intent.putExtra("selectedUser", waUsers.get(position));
+        startActivity(intent);
     }
 }
